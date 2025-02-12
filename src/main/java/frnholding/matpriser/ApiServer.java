@@ -5,7 +5,7 @@ import io.javalin.Javalin;
 import java.util.Properties;
 
 public class ApiServer {
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
     Properties properties = new Properties();
 
     public ApiServer(ApiClient apiClient) {
@@ -26,14 +26,14 @@ public class ApiServer {
         // Endepunkt for å hente spesifikt produkt
         app.get("/api/products/id/{id}", ctx -> {
             String id = ctx.pathParam("id");
-            String response = String.valueOf(apiClient.getData(properties.getProperty("endpoint.product_by_id").replace("{id}", String.valueOf(id))));
+            String response = String.valueOf(apiClient.getData(properties.getProperty("endpoint.product_by_id").replace("{id}", id)));
             ctx.result(response).contentType("application/json");
         });
 
         // Endepunkt for å hente spesifikt produkt
         app.get("/api/products/ean/{ean}", ctx -> {
             String id = ctx.pathParam("ean");
-            String response = String.valueOf(apiClient.getData(properties.getProperty("endpoint.product_by_ean").replace("{ean}", String.valueOf(id))));
+            String response = String.valueOf(apiClient.getData(properties.getProperty("endpoint.product_by_ean").replace("{ean}", id)));
             ctx.result(response).contentType("application/json");
         });
 
@@ -46,7 +46,7 @@ public class ApiServer {
         // Endepunkt for å hente spesifikt produkt
         app.get("/api/physical_store/id/{id}", ctx -> {
             String id = ctx.pathParam("id");
-            String response = String.valueOf(apiClient.getData( properties.getProperty("endpoint.product_by_id").replace("{id}", String.valueOf(id))));
+            String response = String.valueOf(apiClient.getData( properties.getProperty("endpoint.product_by_id").replace("{id}", id)));
             ctx.result(response).contentType("application/json");
         });
 

@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class ApiController {
     private ApiClient apiClient;
@@ -33,7 +33,7 @@ public class ApiController {
 
         apiClient = new ApiClient(apiKey, baseUrl);
     }
-
+/*
     public JSONObject getData(String endpoint) {
         try {
             return apiClient.getData(endpoint);
@@ -42,7 +42,7 @@ public class ApiController {
             return null;
         }
     }
-
+*/
     public static void main(String[] args) {
         ApiController myApiController = new ApiController();
         ApiClient apiClient = new ApiClient(myApiController.apiKey, myApiController.baseUrl);
