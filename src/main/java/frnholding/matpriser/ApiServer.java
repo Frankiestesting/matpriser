@@ -15,14 +15,14 @@ public class ApiServer {
 
         // Endepunkt for å hente alle produkter
         app.get("/api/products", ctx -> {
-            String response = apiClient.getData("/products").toString();
+            String response = apiClient.getData("/products").toString(2);
             ctx.result(response).contentType("application/json");
         });
 
         // Endepunkt for å hente spesifikt produkt
-        app.get("/api/products/id/:id", ctx -> {
+        app.get("/api/products/id/{id}", ctx -> {
             String id = ctx.pathParam("id");
-            String response = apiClient.getData("/products/id/" + id).toString();
+            String response = apiClient.getData("/products/id/" + id).toString(2);
             ctx.result(response).contentType("application/json");
         });
 

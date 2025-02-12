@@ -50,7 +50,7 @@ public class ApiController {
         ApiServer apiServer = new ApiServer(apiClient);
         apiServer.start(myApiController.serverPort); // Serveren vil kjøre på port 7000
 
-        System.out.println("API-server kjører på http://localhost:7000");
+        System.out.println("API-server kjører på http://localhost:7001");
     }
 
     /*
