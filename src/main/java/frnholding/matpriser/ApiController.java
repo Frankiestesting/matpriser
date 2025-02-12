@@ -1,6 +1,6 @@
 package frnholding.matpriser;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,7 @@ import java.util.Properties;
 //import java.util.Scanner;
 
 public class ApiController {
-    private ApiClient apiClient;
+    //private ApiClient apiClient;
     Properties properties = new Properties();
     private String apiKey;
     private String baseUrl;
@@ -31,7 +31,7 @@ public class ApiController {
 
         serverPort = Integer.parseInt(properties.getProperty("server.port"));
 
-        apiClient = new ApiClient(apiKey, baseUrl);
+        /* apiClient = new ApiClient(apiKey, baseUrl); */
     }
 /*
     public JSONObject getData(String endpoint) {
