@@ -26,8 +26,6 @@ public class ApiClientController {
         String apiKey = properties.getProperty("api.secret.key");
         String baseUrl = properties.getProperty("api.base.url");
 
-        int serverPort = Integer.parseInt(properties.getProperty("server.port"));
-
         apiClient = new ApiClient(apiKey, baseUrl);
     }
 
@@ -58,7 +56,7 @@ public class ApiClientController {
         System.out.print("Tast inn tallet for valget ditt (1-7): ");
 
         int choice = scanner.nextInt();
-        String endpoint = "";
+        String endpoint;
 
         switch (choice) {
             case 1:
