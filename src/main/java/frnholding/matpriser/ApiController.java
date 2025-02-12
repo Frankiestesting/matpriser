@@ -10,6 +10,9 @@ import java.util.Scanner;
 public class ApiController {
     private ApiClient apiClient;
     Properties properties = new Properties();
+    private String apiKey;
+    private String baseUrl;
+    private int serverPort;
 
     public ApiController() {
 
@@ -23,8 +26,10 @@ public class ApiController {
             ex.printStackTrace();
         }
 
-        String apiKey = properties.getProperty("api.secret.key");
-        String baseUrl = properties.getProperty("api.base.url");
+        apiKey = properties.getProperty("api.secret.key");
+        baseUrl = properties.getProperty("api.base.url");
+
+        serverPort = Integer.parseInt(properties.getProperty("server.port"));
 
         apiClient = new ApiClient(apiKey, baseUrl);
     }
@@ -38,6 +43,17 @@ public class ApiController {
         }
     }
 
+    public static void main(String[] args) {
+        ApiController myApiController = new ApiController();
+        ApiClient apiClient = new ApiClient(myApiController.apiKey, myApiController.baseUrl);
+
+        ApiServer apiServer = new ApiServer(apiClient);
+        apiServer.start(myApiController.serverPort); // Serveren vil kjøre på port 7000
+
+        System.out.println("API-server kjører på http://localhost:7000");
+    }
+
+    /*
     public static void main(String[] args) {
         ApiController apiController = new ApiController();
 
@@ -100,4 +116,6 @@ public class ApiController {
         JSONObject json = apiController.getData(endpoint);
         System.out.println("Respons fra API: " + json.toString(2));
     }
+
+     */
 }
