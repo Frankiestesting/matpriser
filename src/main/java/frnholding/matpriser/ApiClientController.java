@@ -1,20 +1,17 @@
 package frnholding.matpriser;
 
-//import org.json.JSONObject;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-//import java.util.Scanner;
+import java.util.Scanner;
 
-public class ApiController {
-    //private ApiClient apiClient;
+public class ApiClientController {
+    private ApiClient apiClient;
     Properties properties = new Properties();
-    private String apiKey;
-    private String baseUrl;
-    private int serverPort;
 
-    public ApiController() {
+    public ApiClientController() {
 
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
             if (input == null) {
@@ -26,14 +23,14 @@ public class ApiController {
             ex.printStackTrace();
         }
 
-        apiKey = properties.getProperty("api.secret.key");
-        baseUrl = properties.getProperty("api.base.url");
+        String apiKey = properties.getProperty("api.secret.key");
+        String baseUrl = properties.getProperty("api.base.url");
 
-        serverPort = Integer.parseInt(properties.getProperty("server.port"));
+        int serverPort = Integer.parseInt(properties.getProperty("server.port"));
 
-        /* apiClient = new ApiClient(apiKey, baseUrl); */
+        apiClient = new ApiClient(apiKey, baseUrl);
     }
-/*
+
     public JSONObject getData(String endpoint) {
         try {
             return apiClient.getData(endpoint);
@@ -42,21 +39,11 @@ public class ApiController {
             return null;
         }
     }
-*/
+
+
+
     public static void main(String[] args) {
-        ApiController myApiController = new ApiController();
-        ApiClient apiClient = new ApiClient(myApiController.apiKey, myApiController.baseUrl);
-
-        ApiServer apiServer = new ApiServer(apiClient);
-        apiServer.setProperties(myApiController.properties);
-        apiServer.start(myApiController.serverPort); // Serveren vil kjøre på port 7000
-
-        System.out.println("API-server kjører på http://localhost:7001");
-    }
-
-    /*
-    public static void main(String[] args) {
-        ApiController apiController = new ApiController();
+        ApiClientController apiController = new ApiClientController();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -118,5 +105,5 @@ public class ApiController {
         System.out.println("Respons fra API: " + json.toString(2));
     }
 
-     */
+
 }
